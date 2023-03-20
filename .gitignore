@@ -1,3 +1,5 @@
-dexBack/.env
 dex/node_modules
 dex/.DS_Store
+
+dexBack/.env
+dexBack/node_modules
