@@ -112,6 +112,7 @@ function Swap() {
           {tokenTwo.ticker}
           <DownOutlined />
         </div>
+        <div className='swapButton' disabled={!tokenOneAmount}>Swap</div>
       </div>
     </div>
     </>
