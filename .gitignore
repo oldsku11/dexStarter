@@ -1,5 +1,7 @@
+# Frontend
 dex/node_modules
 dex/.DS_Store
 
-dexBack/.env
+# Backend
 dexBack/node_modules
+dexBack/.env
