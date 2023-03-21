@@ -5,7 +5,8 @@ import {
   DownOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
-import tokenList from '../tokenList.json'
+import tokenList from '../tokenList.json';
+import axios from 'axios';
 
 function Swap() {
   const [slippage, setSlippage] = useState(2.5);
@@ -15,6 +16,7 @@ function Swap() {
   const [tokenTwoAmount, setTokenTwoAmount] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [changeToken, setChangeToken] = useState(1);
+  const [prices, setPrices] = useState(null);
 
   function handleSlippageChange(e){
     setSlippage(e.target.value);
@@ -44,6 +46,21 @@ function Swap() {
     }
     setIsOpen(false);
   }
+
+  async function fetchPrices(one, two){
+
+  const res = await axios.get(`http://localhost:3001/tokenPrice`, {
+    params: {addressOne: one, addressTwo: two}
+  })
+    
+  setPrices(res.data)
+}
+
+  useEffect(()=>{
+
+    fetchPrices(tokenList[0].address, tokenList[1].address)
+
+  }, [])
 
   const settings = (
     <>
