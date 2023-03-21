@@ -24,13 +24,26 @@ function Swap() {
 
   function changeAmount(e){
     setTokenOneAmount(e.target.value);
+    if (e.target.value && prices) {
+      setTokenTwoAmount((e.target.value * prices.ratio).toFixed(2))
+    } else {
+      setTokenTwoAmount(null);
+    }
   }
 
   function switchTokens() {
+    resetState();
     const one = tokenOne;
     const two = tokenTwo;
     setTokenOne(two);
     setTokenTwo(one);
+    fetchPrices(two.address, one.address)
+  }
+
+  function resetState() {
+    setTokenOneAmount(null);
+    setTokenTwoAmount(null);
+    setPrices(null);
   }
 
   function openModal(asset) {
@@ -39,10 +52,13 @@ function Swap() {
   }
 
   function modifyToken(i) {
+    resetState();
     if (changeToken === 1) {
       setTokenOne(tokenList[i]);
+      fetchPrices(tokenList[i].address, tokenTwo.address)
     } else {
       setTokenTwo(tokenList[i])
+      fetchPrices(tokenOne.address, tokenList[i].address)
     }
     setIsOpen(false);
   }
@@ -114,7 +130,12 @@ function Swap() {
         </Popover>
       </div>
       <div className='inputs'>
-        <Input placeholder='0' value={tokenOneAmount} onChange={changeAmount} />
+        <Input
+          placeholder='0'
+          value={tokenOneAmount}
+          onChange={changeAmount}
+          disabled={!prices}
+        />
         <Input placeholder='0' value={tokenTwoAmount} disabled={true} />
         <div className='switchButton' onClick={switchTokens}>
           <ArrowDownOutlined className='switchArrow' />
