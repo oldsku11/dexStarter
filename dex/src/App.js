@@ -1,14 +1,14 @@
-import "./App.css";
-import Header from "./components/Header";
-import Swap from "./components/Swap";
-import Tokens from "./components/Tokens";
-import { Routes, Route } from "react-router-dom";
-import { useConnect, useAccount } from "wagmi";
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import './App.css';
+import Header from './components/Header';
+import Swap from './components/Swap';
+import Tokens from './components/Tokens';
+import {Routes, Route} from 'react-router-dom';
+import {useConnect, useAccount} from 'wagmi';
+import {MetaMaskConnector} from 'wagmi/connectors/metaMask';
 
 function App() {
-  const { address, isConnected } = useAccount();
-  const { connect } = useConnect({
+  const {address, isConnected} = useAccount();
+  const {connect} = useConnect({
     connector: new MetaMaskConnector(),
   });
 
@@ -23,7 +23,7 @@ function App() {
         </Routes>
       </div>
     </div>
-  )
+  );
 }
 
 export default App;

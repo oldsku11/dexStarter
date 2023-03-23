@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 function Tokens() {
   return (
     <div>Tokens</div>
-  )
+  );
 }
 
-export default Tokens
+export default Tokens;
