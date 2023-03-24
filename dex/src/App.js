@@ -7,11 +7,6 @@ import {Routes, Route} from 'react-router-dom';
 import {useConnect, useAccount} from 'wagmi';
 import {MetaMaskConnector} from 'wagmi/connectors/metaMask';
 
-/**
- * @function App
- * @description The main App component
- * @return {JSX.Element} The main App component
-**/
 function App() {
   const {address, isConnected} = useAccount();
   const {connect} = useConnect({
